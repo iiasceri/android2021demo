@@ -1,5 +1,5 @@
 # TS
 
 <p align="center">
- <img width="528" height="1198" src="ts.gif">
+ <img width="264" height="599" src="ts.gif">
 </p>
