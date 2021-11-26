@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TS</string>
+    <string name="refresh_btn">Refresh</string>
+    <string name="no_internet">Please check your internet connectivity !</string>
+    <string name="date">date</string>
+    <string name="details">details</string>
+    <string name="subtitle">subtitle</string>
+    <string name="title">title</string>
+</resources>
