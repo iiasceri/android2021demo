@@ -15,11 +15,13 @@ import com.example.ts.databinding.ActivityLibraryBinding
 import com.example.ts.db.TblLibrary
 import com.example.ts.details.DetailsActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_library.*
 
 
 private val TAG: String = LibraryActivity::class.java.simpleName
 
+@AndroidEntryPoint
 class LibraryActivity : AppCompatActivity() {
     private lateinit var viewModel: LibraryViewModel
     private lateinit var binding: ActivityLibraryBinding

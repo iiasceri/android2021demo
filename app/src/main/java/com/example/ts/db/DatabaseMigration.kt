@@ -1,4 +1,4 @@
-package com.gtl.android.gtapp.appspecific
+package com.example.ts.db
 
 
 import android.util.Log
@@ -6,7 +6,7 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 
 // This needs to be incremented if database schema changes, a migration callback must also be added
-const val DATABASE_VERSION = 7
+const val DATABASE_VERSION = 1
 
 private fun runSql(database: SupportSQLiteDatabase, migration: String, tableName: String, sqlQuery: String): Int {
     return try {
