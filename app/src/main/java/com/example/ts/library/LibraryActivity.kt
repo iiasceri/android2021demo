@@ -16,7 +16,6 @@ import com.example.ts.db.TblLibrary
 import com.example.ts.details.DetailsActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_library.*
 
 
 private val TAG: String = LibraryActivity::class.java.simpleName
@@ -32,6 +31,7 @@ class LibraryActivity : AppCompatActivity() {
         binding = ActivityLibraryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //TODO Implement factory because constructor is custom
         viewModel = ViewModelProvider(this).get(LibraryViewModel::class.java)
 
         if (!InternetCheck.check(this@LibraryActivity)) {
@@ -64,7 +64,7 @@ class LibraryActivity : AppCompatActivity() {
             myListAdapter.notifyDataSetChanged()
             //adapter.setMovies(it)
 
-            library_list_view.onItemClickListener =
+            binding.libraryListView.onItemClickListener =
                 AdapterView.OnItemClickListener { parent, view, position, id ->
                     val selectedContent = myListAdapter.getItem(position)
                     Log.i(TAG, "selected : $selectedContent")

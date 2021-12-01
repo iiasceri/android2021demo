@@ -14,7 +14,7 @@ import androidx.room.RoomDatabase
         LibraryData::class
     ),
     version = DATABASE_VERSION,
-    exportSchema = true
+    exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
     // Add the tables in the database here
