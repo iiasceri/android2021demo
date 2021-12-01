@@ -5,9 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ts.api.ApiClient
 import com.example.ts.db.LibraryData
+import com.example.ts.db.RoomLibraryRepository
+import com.example.ts.db.TblLibrary
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.*
+import javax.inject.Inject
 
-class LibraryViewModel : ViewModel() {
+@HiltViewModel
+class LibraryViewModel @Inject constructor(private val roomLibraryRepository: RoomLibraryRepository) :
+    ViewModel() {
 
     val errorMessage = MutableLiveData<String>()
     val libraryList = MutableLiveData<List<LibraryData>>()
@@ -15,13 +21,20 @@ class LibraryViewModel : ViewModel() {
 
     fun getAllContents() {
         job = CoroutineScope(Dispatchers.IO).launch {
-            val response =  LibraryRepository(ApiClient.apiService).getAllContents()
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    libraryList.postValue(response.body()?.items)
-                } else {
-                    onError("Error : ${response.message()} ")
-                    Log.e("error : ", response.message())
+
+            val list = roomLibraryRepository.getLibraryData()
+            if (list.isNotEmpty())
+                libraryList.postValue(list)
+            else {
+                val response = LibraryRepository(ApiClient.apiService).getAllContents()
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful) {
+                        val values = response.body()?.items
+                        libraryList.postValue(values)
+                    } else {
+                        onError("Error : ${response.message()} ")
+                        Log.e("error : ", response.message())
+                    }
                 }
             }
         }
