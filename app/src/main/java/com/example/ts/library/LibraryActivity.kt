@@ -12,6 +12,8 @@ import com.example.ts.InternetCheck
 import com.example.ts.MyListAdapter
 import com.example.ts.R
 import com.example.ts.databinding.ActivityLibraryBinding
+import com.example.ts.db.LibraryDataDao
+import com.example.ts.db.RoomLibraryRepository
 import com.example.ts.db.TblLibrary
 import com.example.ts.details.DetailsActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -32,7 +34,8 @@ class LibraryActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //TODO Implement factory because constructor is custom
-        viewModel = ViewModelProvider(this).get(LibraryViewModel::class.java)
+//        val factory = LibraryViewModelFactory(RoomLibraryRepository(LibraryDataDao()))
+//        viewModel = ViewModelProvider(this, factory).get(LibraryViewModel::class.java)
 
         if (!InternetCheck.check(this@LibraryActivity)) {
             showToastForConnectivity()

@@ -12,7 +12,7 @@ import kotlinx.coroutines.*
 import javax.inject.Inject
 
 @HiltViewModel
-class LibraryViewModel @Inject constructor(private val roomLibraryRepository: RoomLibraryRepository) :
+class LibraryViewModel @Inject constructor(val roomLibraryRepository: RoomLibraryRepository) :
     ViewModel() {
 
     val errorMessage = MutableLiveData<String>()
