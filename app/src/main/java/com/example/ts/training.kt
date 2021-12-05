@@ -1,22 +1,35 @@
 package com.example.ts
 
+class MyObject {
+    val bla = 3
+}
 
-//Playground for kotlin concepts
-interface MyContainer {
-    var size: Int
+interface ICallback {
+    fun callback(o: MyObject)
+}
 
-    fun add(item: String) {
-        // ...
-        size += 1
+class A : ICallback {
+    private lateinit var o: MyObject
+    val b = B(this, o)
+
+    override fun callback(o: MyObject) {
+        this.o = o
     }
 }
 
-class MyContainerImpl : MyContainer {
-    override var size: Int
-        get() = 0
-        set(value) { println("Just ignoring the $value") }
+class B(var ic: ICallback, o: MyObject) {
+
+    init {
+        Thread(Runnable {
+            run {
+                // some calculation
+                ic.callback(o)
+            }
+        }).start();
+    }
 }
 
 fun main() {
-
+    val a = A()
+    a.b.ic.callback(MyObject())
 }
